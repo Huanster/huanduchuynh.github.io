@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Huan Duc Huynh · Data Analyst</title>
+<meta name="description" content="Data Analyst specializing in SQL, Python, Power BI, Tableau, and business intelligence."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f7f5f0;
+  --bg2:#efece4;
+  --ink:#1a1712;
+  --ink2:#3d3a34;
+  --muted:#8a8579;
+  --accent:#c0392b;
+  --gold:#b8941a;
+  --white:#ffffff;
+  --border:#ddd9d0;
+  --border2:#c8c3b8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Syne',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;}
+.page-wrap{max-width:1100px;margin:0 auto;padding:0 28px 100px;}
+
+/* HEADER */
+header{display:grid;grid-template-columns:1fr auto;align-items:end;padding:64px 0 40px;border-bottom:1.5px solid var(--border2);gap:32px;}
+@media(max-width:600px){header{grid-template-columns:1fr;}
+.header-right{display:none;}}
+.eyebrow{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:'';width:28px;height:1.5px;background:var(--accent);display:inline-block;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,68px);font-weight:600;line-height:1.04;color:var(--ink);margin-bottom:10px;letter-spacing:-0.01em;}
+h1 em{font-style:italic;font-weight:400;color:var(--accent);}
+.header-subtitle{font-size:15px;color:var(--muted);font-family:'Lora',serif;font-style:italic;margin-bottom:28px;}
+.header-links{display:flex;flex-wrap:wrap;gap:6px;}
+.header-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-family:'Syne',sans-serif;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:var(--ink2);border:1px solid var(--border2);border-radius:3px;padding:6px 12px;transition:background .2s,color .2s,border-color .2s;}
+.header-link:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.header-link svg{width:13px;height:13px;flex-shrink:0;}
+.header-right{text-align:right;}
+.location-badge{font-family:'Syne',sans-serif;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.availability{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink2);border:1px solid var(--border2);border-radius:3px;padding:8px 14px;background:var(--white);}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:#27ae60;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+/* NAV */
+.sticky-nav{position:sticky;top:0;z-index:50;background:rgba(247,245,240,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);margin:0 -28px;padding:0 28px;}
+.nav{display:flex;overflow-x:auto;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:18px 20px;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;}
+.nav-btn:hover:not(.active){color:var(--ink);}
+.nav-btn.active{color:var(--ink);border-bottom-color:var(--accent);}
+
+/* SECTIONS */
+.section{display:none;padding-top:52px;}
+.section.active{display:block;}
+.section-heading{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;}
+.section-heading h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;color:var(--ink);}
+.section-heading-line{flex:1;height:1px;background:var(--border2);}
+.section-num{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;color:var(--accent);text-transform:uppercase;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+@media(max-width:640px){.about-grid{grid-template-columns:1fr;}}
+.about-bio{font-family:'Lora',serif;font-size:16px;line-height:1.8;color:var(--ink2);}
+.about-bio p+p{margin-top:16px;}
+.about-stats{display:flex;flex-direction:column;gap:16px;}
+.stat-card{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:4px;padding:18px 20px;background:var(--white);}
+.stat-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:600;color:var(--ink);line-height:1;margin-bottom:4px;}
+.stat-num span{font-size:20px;color:var(--accent);}
+.stat-label{font-size:12px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+
+/* EXPERIENCE */
+.job-item{display:grid;grid-template-columns:180px 1fr;gap:0 40px;padding:36px 0;border-bottom:1px solid var(--border);}
+@media(max-width:640px){.job-item{grid-template-columns:1fr;gap:12px;}}
+.job-item:last-child{border-bottom:none;}
+.job-date{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+.job-co{font-family:'Lora',serif;font-style:italic;font-size:13.5px;color:var(--muted);}
+.job-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:600;color:var(--ink);margin-bottom:16px;line-height:1.3;}
+.job-bullets{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.job-bullets li{font-size:14px;color:var(--ink2);padding-left:18px;position:relative;line-height:1.6;}
+.job-bullets li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:1.5px;background:var(--accent);}
+.job-bullets li strong{color:var(--ink);font-weight:600;}
+.metric{color:var(--accent);font-weight:600;}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.proj-card{border:1px solid var(--border);border-radius:6px;background:var(--white);overflow:hidden;text-decoration:none;color:inherit;display:block;transition:box-shadow .25s,transform .25s,border-color .25s;}
+.proj-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.1);transform:translateY(-2px);border-color:var(--border2);}
+.proj-bar{height:7px;width:100%;}
+.c1{background:linear-gradient(90deg,#c0392b,#e74c3c);}
+.c2{background:linear-gradient(90deg,#b8941a,#d4aa2a);}
+.c3{background:linear-gradient(90deg,#1a5276,#2e86c1);}
+.c4{background:linear-gradient(90deg,#1e8449,#27ae60);}
+.c5{background:linear-gradient(90deg,#6c3483,#8e44ad);}
+.c6{background:linear-gradient(90deg,#784212,#a04000);}
+.c7{background:linear-gradient(90deg,#1a535c,#2a7f8f);}
+.proj-body{padding:22px;}
+.proj-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.35;}
+.proj-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.proj-tag{font-family:'Syne',sans-serif;font-size:10.5px;letter-spacing:0.07em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--bg2);color:var(--ink2);border:1px solid var(--border);}
+.proj-footer{padding:12px 22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.proj-stat{font-size:11px;color:var(--accent);font-family:'Syne',sans-serif;letter-spacing:0.06em;font-weight:600;}
+.proj-arrow{font-size:12px;color:var(--muted);}
+
+/* SKILLS */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:540px){.skills-layout{grid-template-columns:1fr;}}
+.skill-block{border:1px solid var(--border);border-radius:6px;background:var(--white);padding:22px;}
+.skill-block-label{font-family:'Syne',sans-serif;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.skill-block-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.skill-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-pill{font-size:12.5px;padding:5px 11px;border-radius:3px;background:var(--bg);color:var(--ink2);border:1px solid var(--border);transition:background .18s,color .18s,border-color .18s;cursor:default;}
+.skill-pill:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.skill-pill.featured{background:var(--ink);color:var(--white);border-color:var(--ink);}
+
+/* EDUCATION */
+.edu-item{display:grid;grid-template-columns:160px 1fr;gap:0 40px;padding:32px 0;border-bottom:1px solid var(--border);}
+@media(max-width:600px){.edu-item{grid-template-columns:1fr;gap:10px;}}
+.edu-item:last-child{border-bottom:none;}
+.edu-year{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);padding-top:3px;}
+.edu-degree{font-family:'Syne',sans-serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.edu-school{font-family:'Lora',serif;font-style:italic;font-size:14px;color:var(--muted);margin-bottom:8px;}
+.edu-desc{font-size:13.5px;color:var(--ink2);line-height:1.65;}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:36px;}
+.cert-card{border:1px solid var(--border);border-radius:6px;background:var(--white);padding:18px 20px;display:flex;align-items:center;gap:14px;}
+.cert-icon{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.cert-icon.done{background:var(--accent);}
+.cert-icon.prog{background:var(--gold);}
+.cert-name{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.3;}
+.cert-badge{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
+.cert-badge.done{background:rgba(192,57,43,0.1);color:var(--accent);}
+.cert-badge.prog{background:rgba(184,148,26,0.1);color:var(--gold);}
+
+/* FOOTER */
+footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-name{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--ink);}
+.footer-right{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<header>
+  <div class="header-left">
+    <div class="eyebrow">Data Analyst · Portfolio</div>
+    <h1>Huan Duc <em>Huynh</em></h1>
+    <p class="header-subtitle">Business Intelligence · Analytics · Data Storytelling</p>
+    <div class="header-links">
+      <a class="header-link" href="mailto:huanduchuynh@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>Email
+      </a>
+      <a class="header-link" href="https://www.linkedin.com/in/huandhuynh/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+      </a>
+      <a class="header-link" href="https://github.com/Huanster" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub
+      </a>
+      <a class="header-link" href="https://medium.com/@huanduchuynh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>Medium
+      </a>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="location-badge">Orlando, Florida</div>
+    <div class="availability"><div class="avail-dot"></div>Open to opportunities</div>
+  </div>
+</header>
+
+<div class="sticky-nav">
+  <nav class="nav">
+    <button class="nav-btn active" onclick="switchTab('about',this)">About</button>
+    <button class="nav-btn" onclick="switchTab('experience',this)">Experience</button>
+    <button class="nav-btn" onclick="switchTab('projects',this)">Projects</button>
+    <button class="nav-btn" onclick="switchTab('skills',this)">Skills</button>
+    <button class="nav-btn" onclick="switchTab('education',this)">Education</button>
+  </nav>
+</div>
+
+<!-- ABOUT -->
+<section class="section active" id="tab-about">
+  <div class="section-heading"><span class="section-num">01</span><h2>About Me</h2><div class="section-heading-line"></div></div>
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>I hold a degree in Business Administration from the University of Florida and bring a strong foundation in customer service, where I learned the value of clear communication, empathy, and problem-solving.</p>
+      <p>While my career began with a people-first focus, I discovered a passion for data — specifically, how analyzing datasets can reveal patterns, drive smarter decisions, and create measurable business impact.</p>
+      <p>Today, I combine my business background with growing expertise in data analytics to uncover insights that bridge the gap between numbers and strategy. I'm especially interested in turning raw data into actionable stories that support better decision-making and improve customer experiences.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card"><div class="stat-num">7<span>+</span></div><div class="stat-label">Analytics Projects Completed</div></div>
+      <div class="stat-card"><div class="stat-num">22<span>%</span></div><div class="stat-label">Donor Reactivation Rate Improvement</div></div>
+      <div class="stat-card"><div class="stat-num">30<span>%</span></div><div class="stat-label">Reduction in Manual Reporting Time</div></div>
+      <div class="stat-card"><div class="stat-num">10<span>+</span></div><div class="stat-label">Years of Business Operations Experience</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="tab-experience">
+  <div class="section-heading"><span class="section-num">02</span><h2>Experience</h2><div class="section-heading-line"></div></div>
+  <div class="job-item">
+    <div><div class="job-date">Mar 2025 – Present</div><div class="job-co">Living Stones Foundation</div></div>
+    <div>
+      <div class="job-title">Data Analyst, Reporting &amp; Automation Intern</div>
+      <ul class="job-bullets">
+        <li>Built SQL-based donor segmentation models improving reactivation rates by <span class="metric">22%</span></li>
+        <li>Automated Power BI &amp; Tableau dashboards, cutting manual reporting time by <span class="metric">30%</span></li>
+        <li>Developed ETL pipelines improving cross-departmental data accuracy by <span class="metric">25%</span></li>
+        <li>Performed <strong>exploratory data analysis (EDA)</strong> to surface trends, anomalies &amp; data quality issues</li>
+        <li>Documented data processes &amp; reporting standards using standardized templates</li>
+        <li>Collaborated with finance &amp; operations to define requirements and standardize KPI reporting</li>
+      </ul>
+    </div>
+  </div>
+  <div class="job-item">
+    <div><div class="job-date">Jul 2013 – Present</div><div class="job-co">Saigon Bistro Restaurant</div></div>
+    <div>
+      <div class="job-title">Assistant Manager — Data &amp; Operations</div>
+      <ul class="job-bullets">
+        <li>SQL &amp; Excel tracking systems improved reporting accuracy by <span class="metric">15%</span></li>
+        <li>Performance dashboards boosted operational efficiency by <span class="metric">12%</span></li>
+        <li>Profitability analyses by category informed dynamic pricing → <span class="metric">10% revenue increase</span></li>
+        <li>Managed multiple analytics &amp; operational deliverables independently under pressure</li>
+      </ul>
+    </div>
+  </div>
+  <div class="job-item">
+    <div><div class="job-date">May – Aug 2018</div><div class="job-co">Vantage Marketing</div></div>
+    <div>
+      <div class="job-title">Sales Representative Intern</div>
+      <ul class="job-bullets">
+        <li>Client engagement data analysis contributed to a <span class="metric">15% YoY profit increase</span></li>
+        <li>Communicated analytical findings to non-technical leads → <span class="metric">10% productivity improvement</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="tab-projects">
+  <div class="section-heading"><span class="section-num">03</span><h2>Projects</h2><div class="section-heading-line"></div></div>
+  <div class="projects-grid">
+    <a class="proj-card" href="https://www.datascienceportfol.io/huanduchuynh/projects/2" target="_blank" rel="noopener">
+      <div class="proj-bar c1"></div>
+      <div class="proj-body">
+        <div class="proj-title">Customer Sentiment Analysis — British Airways</div>
+        <div class="proj-desc">Turned 1,000+ customer reviews into a data-driven story using Tableau, revealing clear patterns in sentiment and actionable service improvements.</div>
+        <div class="proj-tags"><div class="proj-tag">Tableau</div><div class="proj-tag">Python</div><div class="proj-tag">NLP</div><div class="proj-tag">Data Visualization</div></div>
+      </div>
+      <div class="proj-footer"><div class="proj-stat">↓ 25% negative feedback</div><div class="proj-arrow">View →</div></div>
+    </a>
+    <a class="proj-card" href="https://www.datascienceportfol.io/huanduchuynh/projects/6" target="_blank" rel="noopener">
+      <div class="proj-bar c2"></div>
+      <div class="proj-body">
+        <div class="proj-title">Spotify Top 100 Tracks Dashboard</div>
+        <div class="proj-desc">Interactive Power BI dashboards visualizing top artists, genres, and audio features — 90% peer engagement, 5 genre clusters identified.</div>
+        <div class="proj-tags"><div class="proj-tag">Power BI</div><div class="proj-tag">Python</div><div class="proj-tag">Clustering</div><div class="proj-tag">Data Transformation</div></div>
+      </div>
+      <div class="proj-footer"><div class="proj-stat">5 genre clusters identified</div><div class="proj-arrow">View →</div></div>
+    </a>
+    <a class="proj-card" href="https://www.datascienceportfol.io/huanduchuynh/projects/4" target="_blank" rel="noopener">
+      <div class="proj-bar c4"></div>
+      <div class="proj-body">
+        <div class="proj-title">Pokémon Team Performance Optimization</div>
+        <div class="proj-desc">Analytical modeling on 649-record dataset to build an optimal battle team, optimizing stats, roles, and type coverage for performance.</div>
+        <div class="proj-tags"><div class="proj-tag">Python</div><div class="proj-tag">Pandas</div><div class="proj-tag">Scikit-learn</div><div class="proj-tag">Data Cleaning</div></div>
+      </div>
+      <div class="proj-footer"><div class="proj-stat">20% performance improvement</div><div class="proj-arrow">View →</div></div>
+    </a>
+    <a class="proj-card" href="https://www.datascienceportfol.io/huanduchuynh/projects/5" target="_blank" rel="noopener">
+      <div class="proj-bar c3"></div>
+      <div class="proj-body">
+        <div class="proj-title">Data Insights — Secrets of Good Health</div>
+        <div class="proj-desc">Explores lifestyle factors affecting health scores using data analysis and predictive modeling across multiple health indicators.</div>
+        <div class="proj-tags"><div class="proj-tag">SQL</div><div class="proj-tag">Python</div><div class="proj-tag">Tableau</div><div class="proj-tag">Predictive Modeling</div></div>
+      </div>
+      <div class="proj-footer"><div class="proj-stat">Predictive health modeling</div><div class="proj-arrow">View →</div></div>
+    </a>
+    <a class="proj-card" href="https://www.datascienceportfol.io/huanduchuynh/projects/3" target="_blank" rel="noopener">
+      <div class="proj-bar c6"></div>
+      <div class="proj-body">
+        <div class="proj-title">Walmart Sales Analysis</div>
+        <div class="proj-desc">Analyzed sales data from three Walmart branches to identify top stores, examine trends, and understand customer purchasing behavior via SQL.</div>
+        <div class="proj-tags"><div class="proj-tag">SQL</div><div class="proj-tag">Data Analysis</div><div class="proj-tag">Data Cleaning</div></div>
+      </div>
+      <div class="proj-footer"><div class="proj-stat">3-branch analysis</div><div class="proj-arrow">View →</div></div>
+    </a>
+    <a class="proj-card" href="https://www.datascienceportfol.io/huanduchuynh/projects/1" target="_blank" rel="noopener">
+      <div class="proj-bar c5"></div>
+      <div class="proj-body">
+        <div class="proj-title">Bike-Share Analysis</div>
+        <div class="proj-desc">Full-cycle data analysis for a fictional bike-sharing company using the Ask, Prepare, Process, Analyze, Share, and Act methodology.</div>
+        <div class="proj-tags"><div class="proj-tag">Tableau</div><div class="proj-tag">R</div><div class="proj-tag">Data Visualization</div><div class="proj-tag">Data Cleaning</div></div>
+      </div>
+      <div class="proj-footer"><div class="proj-stat">Full analytics lifecycle</div><div class="proj-arrow">View →</div></div>
+    </a>
+    <a class="proj-card" href="https://www.datascienceportfol.io/huanduchuynh/projects/0" target="_blank" rel="noopener">
+      <div class="proj-bar c7"></div>
+      <div class="proj-body">
+        <div class="proj-title">Coffee Sales Excel Dashboard</div>
+        <div class="proj-desc">Interactive Excel dashboard analyzing coffee sales trends with pivot tables, visualizing revenue, customer segments, and product performance.</div>
+        <div class="proj-tags"><div class="proj-tag">Excel</div><div class="proj-tag">Pivot Tables</div><div class="proj-tag">Data Visualization</div></div>
+      </div>
+      <div class="proj-footer"><div class="proj-stat">Revenue &amp; segment analysis</div><div class="proj-arrow">View →</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="tab-skills">
+  <div class="section-heading"><span class="section-num">04</span><h2>Skills</h2><div class="section-heading-line"></div></div>
+  <div class="skills-layout">
+    <div class="skill-block">
+      <div class="skill-block-label">Languages &amp; Querying</div>
+      <div class="skill-pills">
+        <div class="skill-pill featured">SQL</div><div class="skill-pill featured">Python</div>
+        <div class="skill-pill">Pandas</div><div class="skill-pill">NumPy</div>
+        <div class="skill-pill">Scikit-learn</div><div class="skill-pill">Seaborn</div><div class="skill-pill">R</div>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-label">BI &amp; Visualization</div>
+      <div class="skill-pills">
+        <div class="skill-pill featured">Tableau</div><div class="skill-pill featured">Power BI</div>
+        <div class="skill-pill">Looker</div><div class="skill-pill">Google Data Studio</div>
+        <div class="skill-pill">Advanced Excel</div><div class="skill-pill">PowerPoint</div>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-label">Data Engineering</div>
+      <div class="skill-pills">
+        <div class="skill-pill">ETL Pipelines</div><div class="skill-pill">Data Validation</div>
+        <div class="skill-pill">Data Cleaning</div><div class="skill-pill">Automation Workflows</div>
+        <div class="skill-pill">BigQuery</div><div class="skill-pill">Snowflake</div>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-label">Analytics Methods</div>
+      <div class="skill-pills">
+        <div class="skill-pill">EDA</div><div class="skill-pill">KPI Reporting</div>
+        <div class="skill-pill">Trend Analysis</div><div class="skill-pill">Segmentation</div>
+        <div class="skill-pill">Root Cause Analysis</div><div class="skill-pill">Predictive Modeling</div>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-label">Communication</div>
+      <div class="skill-pills">
+        <div class="skill-pill">Data Storytelling</div><div class="skill-pill">Stakeholder Reporting</div>
+        <div class="skill-pill">Requirements Gathering</div><div class="skill-pill">Process Documentation</div>
+        <div class="skill-pill">Cross-functional Collaboration</div>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-label">Platforms &amp; Tools</div>
+      <div class="skill-pills">
+        <div class="skill-pill">Google Analytics</div><div class="skill-pill">SharePoint</div>
+        <div class="skill-pill">Google Trends</div><div class="skill-pill">MS Office Suite</div>
+        <div class="skill-pill">dbt</div><div class="skill-pill">Airflow</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="tab-education">
+  <div class="section-heading"><span class="section-num">05</span><h2>Education</h2><div class="section-heading-line"></div></div>
+  <div class="edu-item">
+    <div class="edu-year">2017 – 2020</div>
+    <div>
+      <div class="edu-degree">B.A. Business Administration</div>
+      <div class="edu-school">University of Florida, Warrington College of Business</div>
+      <div class="edu-desc">Specialization in Mass Communications. Studied how business administration and data-driven decision-making combine to create meaningful strategic impact.</div>
+    </div>
+  </div>
+  <div class="edu-item">
+    <div class="edu-year">2023 – 2024</div>
+    <div>
+      <div class="edu-degree">Google Data Analytics Certificate</div>
+      <div class="edu-school">Google / Coursera</div>
+      <div class="edu-desc">Cleaned and organized data using spreadsheets, SQL, and R; developed analytical skills in visualization and data analysis; presented findings using Tableau and other platforms.</div>
+    </div>
+  </div>
+  <div class="section-heading" style="margin-top:44px;"><span class="section-num">In Progress</span><h2>Certifications</h2><div class="section-heading-line"></div></div>
+  <div class="cert-grid">
+    <div class="cert-card"><div class="cert-icon done"></div><div><div class="cert-name">Google Data Analytics Certificate</div><div class="cert-badge done">Completed</div></div></div>
+    <div class="cert-card"><div class="cert-icon prog"></div><div><div class="cert-name">SQL Certification</div><div class="cert-badge prog">In Progress</div></div></div>
+    <div class="cert-card"><div class="cert-icon prog"></div><div><div class="cert-name">Power BI Data Analyst Associate (PL-300)</div><div class="cert-badge prog">Pursuing</div></div></div>
+    <div class="cert-card"><div class="cert-icon prog"></div><div><div class="cert-name">Tableau Desktop Specialist</div><div class="cert-badge prog">Pursuing</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Huan Duc Huynh</div>
+  <div class="footer-right">Data Analyst · Orlando, FL · huanduchuynh@gmail.com</div>
+</footer>
+
+</div>
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
