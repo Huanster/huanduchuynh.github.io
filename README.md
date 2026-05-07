@@ -88,7 +88,7 @@ I'm a University of Florida grad (Warrington College of Business) who discovered
 
 ## 📬 Let's connect
 
-- 🌐 Portfolio: [huanduchuynh.github.io](https://huanduchuynh.github.io)
+- 🌐 Portfolio: [huanster.github.io](https://huanster.github.io)
 - 💼 LinkedIn: [linkedin.com/in/huandhuynh](https://www.linkedin.com/in/huandhuynh/)
 - ✍️ Medium: [medium.com/@huanduchuynh](https://medium.com/@huanduchuynh)
 - 📧 Email: [huanduchuynh@gmail.com](mailto:huanduchuynh@gmail.com)
